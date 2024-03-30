@@ -2,17 +2,57 @@ import "./index.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faLocationDot, faClock} from '@fortawesome/free-solid-svg-icons';
 import {faFacebook, faInstagram} from '@fortawesome/free-brands-svg-icons'
-import SingUpModal from "../../features/Access/SingUp/signUp";
+import SignUpModal from "../../features/Access/SingUp/signUp";
 import LoginModal from "../../features/Access/Login/login";
+import { useSelector, useDispatch } from 'react-redux';
+import { clearRegisterStatus} from '../../features/Access/SingUp/signUpSilce';
+import { useState, useEffect } from 'react';
 
 function HomePage() {
+  const dispatch = useDispatch();
+  const { status, error } = useSelector((state) => state.signUp);
+
+  const [showAlert, setShowAlert] = useState(false);
+
+  useEffect(() => {
+    if (status === 'succeeded' || status === 'failed') {
+      setShowAlert(true);
+      const timer = setTimeout(() => {
+        setShowAlert(false); // Hide the alert after 3 seconds
+        dispatch(clearRegisterStatus());
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [status, dispatch]);
+
+  let alert = null;
+  if (showAlert && status === 'succeeded') {
+    alert = (
+      <div className="alert alert-success alert-dismissible fade show position-absolute top-0 end-0" role="alert">
+        Đăng ký thành công!
+        <button type="button" className="btn-close" onClick={() => setShowAlert(false)} aria-label="Close"></button>
+      </div>
+    );
+  } else if (showAlert && status === 'failed') {
+    alert = (
+      <div className="alert alert-danger alert-dismissible fade show position-absolute top-0 end-0" role="alert">
+        Đăng ký thất bại! {error.message} 
+        <button type="button" className="btn-close" onClick={() => setShowAlert(false)} aria-label="Close"></button>
+      </div>
+    );
+  }
+
   return (
     <div className="homepage">
-      <nav className="nav" id="covit-header">
+      {alert}
+      <nav className="nav row d-flex" id="covit-header">z
         <div className="col-7 pe-4 d-flex align-items-center justify-content-end">
           <h2 className="text-white mb-0 fw-bold ">Cập nhập mới nhất về COVID-19</h2>
         </div>
-        <div className="col-5 ps-4  d-flex align-items-center justify-content-start">
+        <div className="col-3 ps-4  d-flex align-items-center justify-content-start">
           <button className="btn rounded-pill bg-light" type="button">
             <span className="fw-bold">Tìm hiểu thêm</span>
           </button>
@@ -21,121 +61,121 @@ function HomePage() {
       <header>
         <nav className="navbar navbar-expand-lg bg-body-tertiary shadow">
           <div className="container">
-            <span class="navbar-brand" href="#">
+            <span className="navbar-brand" href="#">
               <img src="./logo.jpeg" alt="logo" />
             </span>
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent"
               aria-expanded="false"
               aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-around col-8">
-                <li class="nav-item">
-                  <span class="nav-link active rounded-pill" aria-current="page" href="#">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-around col-8">
+                <li className="nav-item">
+                  <span className="nav-link active rounded-pill" aria-current="page" href="#">
                     Trang Chủ
                   </span>
                 </li>
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <span
-                    class="nav-link dropdown-toggle rounded-pill"
+                    className="nav-link dropdown-toggle rounded-pill"
                     href="#"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false">
                     Các Dịch Vụ
                   </span>
-                  <ul class="dropdown-menu">
+                  <ul className="dropdown-menu">
                     <li>
-                      <span class="dropdown-item" href="#">
+                      <span className="dropdown-item" href="#">
                         Action
                       </span>
                     </li>
                     <li>
-                      <span class="dropdown-item" href="#">
+                      <span className="dropdown-item" href="#">
                         Another action
                       </span>
                     </li>
                     <li>
-                      <hr class="dropdown-divider" />
+                      <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <span class="dropdown-item" href="#">
+                      <span className="dropdown-item" href="#">
                         Something else here
                       </span>
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item">
-                  <span class="nav-link rounded-pill" aria-current="page" href="#">
+                <li className="nav-item">
+                  <span className="nav-link rounded-pill" aria-current="page" href="#">
                     Nhà Thuốc
                   </span>
                 </li>
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <span
-                    class="nav-link dropdown-toggle rounded-pill"
+                    className="nav-link dropdown-toggle rounded-pill"
                     href="#"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false" >
                     Gói Dịch Vụ
                   </span>
-                  <ul class="dropdown-menu">
+                  <ul className="dropdown-menu">
                     <li>
-                      <span class="dropdown-item" href="#">
+                      <span className="dropdown-item" href="#">
                         Action
                       </span>
                     </li>
                     <li>
-                      <span class="dropdown-item" href="#">
+                      <span className="dropdown-item" href="#">
                         Another action
                       </span>
                     </li>
                     <li>
-                      <hr class="dropdown-divider" />
+                      <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <span class="dropdown-item" href="#">
+                      <span className="dropdown-item" href="#">
                         Something else here
                       </span>
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item">
-                  <span class="nav-link rounded-pill" aria-current="page" href="#">
+                <li className="nav-item">
+                  <span className="nav-link rounded-pill" aria-current="page" href="#">
                     Đội Ngũ Bác Sĩ
                   </span>
                 </li>
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <span
-                    class="nav-link dropdown-toggle rounded-pill"
+                    className="nav-link dropdown-toggle rounded-pill"
                     href="#"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false" >
                     Tin Tức
                   </span>
-                  <ul class="dropdown-menu">
+                  <ul className="dropdown-menu">
                     <li>
-                      <span class="dropdown-item" href="#">
+                      <span className="dropdown-item" href="#">
                         Action
                       </span>
                     </li>
                     <li>
-                      <span class="dropdown-item" href="#">
+                      <span className="dropdown-item" href="#">
                         Another action
                       </span>
                     </li>
                     <li>
-                      <hr class="dropdown-divider" />
+                      <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <span class="dropdown-item" href="#">
+                      <span className="dropdown-item" href="#">
                         Something else here
                       </span>
                     </li>
@@ -155,15 +195,15 @@ function HomePage() {
         </nav>
       </header>
       <main className="main-content">
-        <div id="carouselExampleIndicators" class="carousel slide">
+        <div id="carouselExampleIndicators" className="carousel slide">
           <div className="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img src="./anh_cline.jpg" class="d-block w-100" alt="phòng khám 1"/>
+              <img src="./anh_cline.jpg" className="d-block w-100" alt="phòng khám 1"/>
               <div className="carousel-caption d-none d-md-block">
                 <h1>Caiz Health</h1>
                 <p className="fs-4">Bạn thấy không khỏe? Hãy để Caiz Health chăm sóc cho bạn!</p>
@@ -171,27 +211,27 @@ function HomePage() {
             </div>
             <div className="carousel-item">
               <img src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2020/09/Female_Doctor_Daughter_Mother_1296x728-header-1296x729.jpg?w=1155&h=2268"
-               class="d-block w-100" alt="phòng khám 2"/>
+               className="d-block w-100" alt="phòng khám 2"/>
               <div className="carousel-caption d-none d-md-block">
                 <h1>Caiz Health</h1>
                 <p className="fs-4">Tư vấn sức khỏe từ xa 24/7 qua video & chat</p>
               </div>
             </div>
             <div className="carousel-item">
-              <img src="https://gleneagles.hk/images/02-Clinic-B_resize.jpg" class="d-block w-100" alt="phòng khám 3"/>
+              <img src="https://gleneagles.hk/images/02-Clinic-B_resize.jpg" className="d-block w-100" alt="phòng khám 3"/>
               <div className="carousel-caption d-none d-md-block">
                 <h1>Caiz Health</h1>
                 <p className="fs-4">Hơn 100,000 khách hàng tin dùng dịch vụ</p>
               </div>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+          <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
           </button>
         </div>
         <div className="content background">
@@ -214,7 +254,7 @@ function HomePage() {
             <div className="row">
               <div className="col-6 p-3 wrap-img">
                 <img src="https://cdn.jiohealth.com/apps/clinic/2/feature-image/web/1_20221201_0.jpg" 
-                class="img-fluid" alt="địa chỉ"/>
+                className="img-fluid" alt="địa chỉ"/>
               </div>
               <div className="col-6 d-flex justify-content-center">
                 <div className="card-body">
@@ -241,47 +281,47 @@ function HomePage() {
           </div>
         </div>
       </main>
-      <footer class="text-white pt-4 pb-4">
+      <footer className="text-white pt-4 pb-4">
         <div className="container">
         <img src="./logo.png" className="logo" alt="logo"/>
           <div className="row text-center text-md-start">
             {/* <!-- Cột 1 --> */}
             <div className="col-5 mb-3">
-              <ul class="list-unstyled">
-                <li><span href="#" class="text-white">Hotline 19001001</span></li>
-                <li><span href="#" class="text-white">Hỗ trợ support@caizhealth.com</span></li>
-                <li><span href="#" class="text-white">Copyright © 2017-2024 Rai and Rohl Technologies, Inc. All rights reserved.</span></li>
+              <ul className="list-unstyled">
+                <li><span href="#" className="text-white">Hotline 19001001</span></li>
+                <li><span href="#" className="text-white">Hỗ trợ support@caizhealth.com</span></li>
+                <li><span href="#" className="text-white">Copyright © 2017-2024 Rai and Rohl Technologies, Inc. All rights reserved.</span></li>
               </ul>
             </div>
             {/* <!-- Cột 2 --> */}
             <div className="col-2 mb-3">
               <h5 className="text-white">Dịch vụ</h5>
-              <ul class="list-unstyled">
-                <li><span href="#" class="text-white">Hẹn Bác Sĩ, Điều Dưỡng Đến Nhà</span></li>
-                <li><span href="#" class="text-white">Nhà Thuốc Trực Tuyến Jio</span></li>
-                <li><span href="#" class="text-white">Jio Prime</span></li>
-                <li><span href="#" class="text-white">Vị Trí Tuyển Dụng</span></li>
+              <ul className="list-unstyled">
+                <li><span href="#" className="text-white">Hẹn Bác Sĩ, Điều Dưỡng Đến Nhà</span></li>
+                <li><span href="#" className="text-white">Nhà Thuốc Trực Tuyến Jio</span></li>
+                <li><span href="#" className="text-white">Jio Prime</span></li>
+                <li><span href="#" className="text-white">Vị Trí Tuyển Dụng</span></li>
               </ul>
             </div>
             {/* <!-- Cột 3 --> */}
             <div className="col-2 mb-3">
               <h5 className="text-white">Tìm Hiểu Thêm</h5>
-              <ul class="list-unstyled">
-                <li><span href="#" class="text-white">Đội Ngũ Bác Sĩ</span></li>
-                <li><span href="#" class="text-white">Dịch Vụ Thăm Khám</span></li>
-                <li><span href="#" class="text-white">Dành cho báo chí</span></li>
-                <li><span href="#" class="text-white">Vị Trí Tuyển Dụng</span></li>
+              <ul className="list-unstyled">
+                <li><span href="#" className="text-white">Đội Ngũ Bác Sĩ</span></li>
+                <li><span href="#" className="text-white">Dịch Vụ Thăm Khám</span></li>
+                <li><span href="#" className="text-white">Dành cho báo chí</span></li>
+                <li><span href="#" className="text-white">Vị Trí Tuyển Dụng</span></li>
               </ul>
             </div>
             {/* <!-- Cột 4 --> */}
             <div className="col-3 mb-3">
               <h5 className="text-white">Hỗ Trợ Khách Hàng</h5>
-              <ul class="list-unstyled">
-                <li><span href="#" class="text-white">Câu Hỏi Thường Gặp</span></li>
-                <li><span href="#" class="text-white">Chính Sách Bảo Mật</span></li>
-                <li><span href="#" class="text-white">Chính Sách Hoạt Động</span></li>
-                <li><span href="#" class="text-white">Liên hệ</span></li>
-                <li><span href="#" class="text-white">Chính sách giải quyết khiếu nại</span></li>
+              <ul className="list-unstyled">
+                <li><span href="#" className="text-white">Câu Hỏi Thường Gặp</span></li>
+                <li><span href="#" className="text-white">Chính Sách Bảo Mật</span></li>
+                <li><span href="#" className="text-white">Chính Sách Hoạt Động</span></li>
+                <li><span href="#" className="text-white">Liên hệ</span></li>
+                <li><span href="#" className="text-white">Chính sách giải quyết khiếu nại</span></li>
               </ul>
             </div>
           </div>
@@ -290,17 +330,17 @@ function HomePage() {
             {/* <!-- Cột 1 --> */}
             <div className="col-5 mb-3">
              <h5 className="text-white">CÔNG TY TNHH PHÒNG KHÁM ĐA KHOA JIO HEALTH</h5>
-              <ul class="list-unstyled">
-                <li><span href="#" class="text-white">Giấy CN ĐKDN số 0309145924, đăng ký lần đầu ngày 06/07/2009, đăng ký thay đổi lần thứ 9 ngày 06/07/2023, cấp bởi Sở KH&ĐT Thành phố Hồ Chí Minh.</span></li>
+              <ul className="list-unstyled">
+                <li><span href="#" className="text-white">Giấy CN ĐKDN số 0309145924, đăng ký lần đầu ngày 06/07/2009, đăng ký thay đổi lần thứ 9 ngày 06/07/2023, cấp bởi Sở KH&ĐT Thành phố Hồ Chí Minh.</span></li>
               </ul>
             </div>
             {/* <!-- Cột 2 --> */}
             <div className="col-4 mb-3">
               <h5 className="text-white">Địa chỉ</h5>
-              <ul class="list-unstyled">
-                <li><span href="#" class="text-white">Phòng khám Đa khoa Cao cấp Jio Health - Jio Smart Clinic</span></li>
-                <li><span href="#" class="text-white">39 Lê Duẩn, Phường Bến Nghé, Quận 1, TP.HCM</span></li>
-                <li className="mt-2"><span href="#" class="text-white fw-bold">Hãy theo dõi Jio Health tại</span></li>
+              <ul className="list-unstyled">
+                <li><span href="#" className="text-white">Phòng khám Đa khoa Cao cấp Jio Health - Jio Smart Clinic</span></li>
+                <li><span href="#" className="text-white">39 Lê Duẩn, Phường Bến Nghé, Quận 1, TP.HCM</span></li>
+                <li className="mt-2"><span href="#" className="text-white fw-bold">Hãy theo dõi Jio Health tại</span></li>
                 <li></li>
               </ul>
               <div className="d-flex mt-3">
@@ -315,7 +355,7 @@ function HomePage() {
           </div>
         </div>
       </footer>
-      <SingUpModal/>
+      <SignUpModal/>
       <LoginModal/>
     </div>
   );

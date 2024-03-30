@@ -1,29 +1,46 @@
-import React, { useState } from 'react';
+import { useState, useEffect, useRef} from 'react';
+import { useDispatch } from 'react-redux';
+import {login} from './loginSlice';
+import { Modal } from "bootstrap";
 
 function LoginModal() {
+
+  const modalRef = useRef(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(true);
+  useEffect(() => {
+    if (!isModalOpen && modalRef.current) {
+      const bootstrapModal = Modal.getInstance(modalRef.current);
+      if (bootstrapModal) {
+        bootstrapModal.hide();
+      }
+      const backdrop = document.querySelector('.modal-backdrop');
+      if (backdrop) {
+        backdrop.remove();
+      }
+    }
+  }, [isModalOpen]);
+
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
-    rememberMe: false
   });
 
+
+  const dispatch = useDispatch();
+
   const handleLoginChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setLoginData(prevData => ({
-      ...prevData,
-      [name]: type === 'checkbox' ? checked : value
-    }));
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    // Thêm xử lý khi người dùng submit form đăng nhập
-    console.log(loginData);
+    dispatch(login(loginData));
+    setIsModalOpen(false);
   };
 
   return (
-    <div>
-      <div className="modal fade" id="loginModal" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div className="modal fade"   ref={modalRef} id="loginModal" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header border-0">
@@ -48,7 +65,6 @@ function LoginModal() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

@@ -1,4 +1,10 @@
-import { apiBase } from "./api_base/v1/api";
+import { apiBase } from "./api_base";
 
-export const apiSignup = apiBase + '/user/signup'
-export const apiLogin = apiBase + '/user/signup'
+export const apiUer = {
+    signup: `${apiBase}/user/signup`,
+    login: `${apiBase}/user/login`,
+    logout: `${apiBase}/user/logout`,
+    refreshToken: `${apiBase}/user/handlerRefreshToken`
+  }
+
+

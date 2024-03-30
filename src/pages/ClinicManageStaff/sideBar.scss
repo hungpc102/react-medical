@@ -1,0 +1,45 @@
+
+@import "../../assets/css/base.scss";
+*{
+    font-size: 16px;
+}
+.sidebar{
+    width: 330px;
+    background-color: $color-bg !important;
+    .sidebar-logo{ 
+        .logo{
+            width: 110px;
+            height: 60px;
+            margin-left: 30%;
+        }
+        .img-staff{
+            width: 60px;
+            height: 60px;
+            
+        }
+        .card-user{
+            background-color: $color-select;
+            border-radius: 10px ;
+            height: 92px;
+            width: 280px;
+        }
+    }
+    .sidebar-content{
+        .nav-item{
+            height: 50px;
+            .nav-link{
+                line-height: 50px;
+            }
+        }
+        .icon{
+                font-size: 20px;
+            }
+        .nav-link.active{
+            background-color:$color-select;
+            border-right: solid 5px #028eb5;
+            color: #028eb5 !important;
+            font-weight: 600;
+        }
+    }
+   
+}

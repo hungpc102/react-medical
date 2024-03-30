@@ -11,13 +11,17 @@
 
 import filtersSlice from "../features/TodoListPage/Filters/filtersSlice"
 import todoListSlice from "../features/TodoListPage/TodoList/todoListSlice"
+import signUpSlice from "../features/Access/SingUp/signUpSilce"
+import loginSlice from "../features/Access/Login/loginSlice"
 
 import {configureStore} from '@reduxjs/toolkit'
 
 const store = configureStore({
     reducer:{
         filters: filtersSlice.reducer,
-        todoList: todoListSlice.reducer
+        todoList: todoListSlice.reducer,
+        signUp: signUpSlice,
+        login: loginSlice
     }
 })
 

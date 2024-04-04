@@ -7,15 +7,26 @@ import LoginModal from "../../features/Access/Login/login";
 import { useSelector, useDispatch } from 'react-redux';
 import { clearRegisterStatus} from '../../features/Access/SingUp/signUpSilce';
 import { useState, useEffect } from 'react';
+import {useNavigate } from 'react-router-dom';
+import {decodeToken} from '../../utils/jwt'
 
-function HomePage() {
+function HomePage () {
   const dispatch = useDispatch();
-  const { status, error } = useSelector((state) => state.signUp);
-
+  const signUp = useSelector((state) => state.signUp);
+  const login = useSelector((state) => state.login);
+  const navigate = useNavigate();
+  
   const [showAlert, setShowAlert] = useState(false);
+  
+  useEffect(() => {
+    if (login.status === 'succeeded') {
+      const user = decodeToken(login.user.metadata.tokens.accessToken);
+      navigate(`manage/${user.role}`);
+    }
+  }, [login, navigate]);
 
   useEffect(() => {
-    if (status === 'succeeded' || status === 'failed') {
+    if (signUp.status === 'succeeded' || signUp.status === 'failed') {
       setShowAlert(true);
       const timer = setTimeout(() => {
         setShowAlert(false); // Hide the alert after 3 seconds
@@ -26,20 +37,20 @@ function HomePage() {
         clearTimeout(timer);
       };
     }
-  }, [status, dispatch]);
+  }, [signUp.status, dispatch]);
 
   let alert = null;
-  if (showAlert && status === 'succeeded') {
+  if (showAlert && signUp.status === 'succeeded') {
     alert = (
       <div className="alert alert-success alert-dismissible fade show position-absolute top-0 end-0" role="alert">
         Đăng ký thành công!
         <button type="button" className="btn-close" onClick={() => setShowAlert(false)} aria-label="Close"></button>
       </div>
     );
-  } else if (showAlert && status === 'failed') {
+  } else if (showAlert && signUp.status === 'failed') {
     alert = (
       <div className="alert alert-danger alert-dismissible fade show position-absolute top-0 end-0" role="alert">
-        Đăng ký thất bại! {error.message} 
+        Đăng ký thất bại! {signUp.error.message} 
         <button type="button" className="btn-close" onClick={() => setShowAlert(false)} aria-label="Close"></button>
       </div>
     );

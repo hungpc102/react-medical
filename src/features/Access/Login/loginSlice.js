@@ -36,7 +36,11 @@ export const loginSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.user = action.payload;
+        state.user= action.payload;
+
+        const { user, tokens } = action.payload.metadata; 
+        localStorage.setItem('user', JSON.stringify(user)); 
+        localStorage.setItem('tokens', JSON.stringify(tokens)); 
       })
       .addCase(login.rejected, (state, action) => {
         state.status = 'failed';

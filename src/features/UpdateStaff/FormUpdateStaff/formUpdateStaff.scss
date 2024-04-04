@@ -1,0 +1,15 @@
+@import '../../../assets/css/base.scss';
+
+.form-update-staff{
+    margin-top: 10%;
+    width: 500px;
+    h2{
+        color: $color-primary;
+    }
+    .btn{
+        background-color: $color-logo;
+        border: none;
+        width: 120px;
+        height: 50px;
+    }
+}

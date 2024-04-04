@@ -9,19 +9,35 @@
 // export default store
 
 
+import {configureStore} from '@reduxjs/toolkit'
 import filtersSlice from "../features/TodoListPage/Filters/filtersSlice"
 import todoListSlice from "../features/TodoListPage/TodoList/todoListSlice"
 import signUpSlice from "../features/Access/SingUp/signUpSilce"
 import loginSlice from "../features/Access/Login/loginSlice"
+import updateStaffSlice from "../features/UpdateStaff/FormUpdateStaff/formUpdateSlice"
+import showStaffSlice from "../features/UpdateStaff/ShowStaff/showStaffSlice"
+import updateDoctorSlice from "../features/UpdateDoctor/FormUpdateDoctor/formUpdateSlice"
+import showDoctorSlice from "../features/UpdateDoctor/ShowDoctor/showDoctorSlice"
+import createRecordSlice from "../features/Welcome/CreateMedicalRecord/createRecordSlice"
+import listRecordSlice from "../features/Welcome/ListMedicalRecord/listRecordSlice"
+import getClinicSlice from "../features/ClinicRoom/indexSlice"
+import addRecordToWaitingRoomSlice from "../features/Welcome/CreateMedicalRecord/addRecordToWaitingRoomSlice"
 
-import {configureStore} from '@reduxjs/toolkit'
 
 const store = configureStore({
     reducer:{
         filters: filtersSlice.reducer,
         todoList: todoListSlice.reducer,
         signUp: signUpSlice,
-        login: loginSlice
+        login: loginSlice,
+        updateStaff: updateStaffSlice,
+        showStaff: showStaffSlice,
+        updateDoctor: updateDoctorSlice,
+        showDoctor: showDoctorSlice,
+        createRecord: createRecordSlice,
+        listRecord:listRecordSlice,
+        getClinic: getClinicSlice,
+        addRecordToWaitingRoom: addRecordToWaitingRoomSlice
     }
 })
 

@@ -1,0 +1,16 @@
+@import '../../../assets/css/base.scss';
+
+.col-md-8{
+    margin-top: 20%;
+    width: 600px;
+    .card{
+        border-radius: 15px;
+        overflow: hidden;
+        .card-header{
+            background-color: $color-logo !important;
+            h3{
+                color:white
+            }
+        }
+    }
+}

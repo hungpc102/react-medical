@@ -14,14 +14,15 @@ function SignUpModal() {
 
   const [isModalOpen, setIsModalOpen] = useState(true);
   useEffect(() => {
-    if (!isModalOpen && modalRef.current) {
+    if (!isModalOpen) {
       const bootstrapModal = Modal.getInstance(modalRef.current);
       if (bootstrapModal) {
         bootstrapModal.hide();
       }
+      // Ẩn backdrop thay vì loại bỏ nó
       const backdrop = document.querySelector('.modal-backdrop');
       if (backdrop) {
-        backdrop.remove();
+        backdrop.remove()
       }
     }
   }, [isModalOpen]);
@@ -52,7 +53,7 @@ function SignUpModal() {
     e.preventDefault();
     let newErrors = {};
 
-    if (formData.fullname && !validateName(formData.fullname)) {
+    if (!validateName(formData.fullname)) {
       newErrors = {
         ...newErrors,
         fullname: "Tên không được chứa kí tự đặc biệt",
@@ -91,7 +92,8 @@ function SignUpModal() {
       })
     );
     setIsModalOpen(false);
-  };
+   
+  }
 
   return (
     <div
@@ -244,7 +246,7 @@ function SignUpModal() {
                 Hủy
               </button>
               <button type="submit"
-                className="btn btn-primary  rounded-pill px-5 py-2">
+                className="btn btn-primary  rounded-pill px-5 py-2 text-nowrap" >
                 Đăng ký
               </button>
             </div>

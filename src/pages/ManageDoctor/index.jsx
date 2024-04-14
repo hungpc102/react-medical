@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 function ManageDoctor() {
   return (
-    <div className="d-flex">
+    <div className="d-flex doctor">
       <Sidebar />
       <div className="flex-grow-1">
       <Outlet/>

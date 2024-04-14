@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
 import './assets/css/base.scss'
+
 import ReactDOM from 'react-dom';
 import './index.css';
 import store from './app/store';

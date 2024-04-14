@@ -1,15 +1,20 @@
 @import '../../../assets/css/base.scss';
 
-.form-update-staff{
-    margin-top: 10%;
+.form-update-doctor{
+    height: 100%;
+    border-radius: 10px;
     width: 500px;
-    h2{
-        color: $color-primary;
-    }
-    .btn{
+    .btn-update{
         background-color: $color-logo;
         border: none;
         width: 120px;
-        height: 50px;
+        height: 44px;
+        color: white;
+        &:hover{
+            color:black
+        }
     }
+}
+.bg-color{
+    background-color: #f2f2f2;
 }

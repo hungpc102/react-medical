@@ -40,12 +40,12 @@ function Sidebar() {
             </NavLink>
           </li>
          
-          <li className="nav-item my-2">
+          {/* <li className="nav-item my-2">
             <NavLink to="/abc" className="nav-link text-muted" activeClassName="active">
               <FontAwesomeIcon icon={faChartPie} className='me-2 icon ms-4'/>
               Điều phối bệnh nhân
             </NavLink>
-          </li>
+          </li> */}
 
           <li className="nav-item my-2">
             <NavLink to="/clinic-info" className="nav-link text-muted" activeClassName="active">

@@ -1,17 +1,25 @@
 // File: authSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { apiUer } from '../../../api/user_Api';
+import { decodeToken } from '../../../utils/jwt';
 
 import axios from 'axios'; 
 
-export const login = createAsyncThunk(
-  'auth/login',
+export const logout = createAsyncThunk(
+  'auth/logout',
   async (userData, { rejectWithValue }) => {
     try {
+        const tokensString = localStorage.getItem('tokens');
+        const tokens = JSON.parse(tokensString)
+        const user = decodeToken(tokens.accessToken)
       const config = {
-        headers: { 'x-api-key': process.env.REACT_APP_API_KEY }
+        headers: {
+            'x-api-key': process.env.REACT_APP_API_KEY,
+            'athorization': tokens.accessToken,
+            'x-client-id': user.userId
+          }
       };
-      const response = await axios.post(apiUer.login, userData, config);
+      const response = await axios.post(apiUer.logout, userData, config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -19,8 +27,8 @@ export const login = createAsyncThunk(
   }
 );
 
-export const loginSlice = createSlice({
-  name: 'login',
+export const logoutSlice = createSlice({
+  name: 'logout',
   initialState: {
     user: null,
     status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
@@ -31,14 +39,14 @@ export const loginSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(login.pending, (state) => {
+      .addCase(logout.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(login.fulfilled, (state, action) => {
+      .addCase(logout.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.user= action.payload;
       })
-      .addCase(login.rejected, (state, action) => {
+      .addCase(logout.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload;
       });
@@ -46,4 +54,4 @@ export const loginSlice = createSlice({
 });
 
 
-export default loginSlice.reducer;
+export default logoutSlice.reducer;

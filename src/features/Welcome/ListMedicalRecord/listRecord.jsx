@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { listRecord } from './listRecordSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import './listRecord.scss'
 
 const ListRecord = () => {
   const [filters, setFilters] = useState({
@@ -34,8 +35,8 @@ const ListRecord = () => {
 
 
   return (
-    <div className='mt-5 px-3'>
-        <div>
+    <div className='pt-4 ps-3'>
+        <div className='list-record p-3 pt-5 px-4 bg-color'>
             <h4>Bộ lọc</h4>
             <form className='d-flex justify-content-between'>
                 <div className="mb-3">
@@ -83,6 +84,7 @@ const ListRecord = () => {
                   <tr>
                       <th scope="col">STT</th>
                       <th scope="col">Mã hồ sơ</th>
+                      <th scope="col">Mã bệnh nhân</th>
                       <th scope="col">Tên bệnh nhân</th>
                       <th scope="col">Gói khám</th>
                       <th scope="col">Trạng thái</th>
@@ -93,6 +95,7 @@ const ListRecord = () => {
                       <tr key={record.patient_id}>
                           <th scope="row">{index + 1}</th>
                           <td>{record.patient_id}</td>
+                          <td>{record.user_id}</td>
                           <td>{record.patient_name}</td>
                           <td>{record.package_id}</td>
                           <td>{record.medicalRecord_status}</td>

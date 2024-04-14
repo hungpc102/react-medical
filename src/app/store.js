@@ -20,9 +20,11 @@ import updateDoctorSlice from "../features/UpdateDoctor/FormUpdateDoctor/formUpd
 import showDoctorSlice from "../features/UpdateDoctor/ShowDoctor/showDoctorSlice"
 import createRecordSlice from "../features/Welcome/CreateMedicalRecord/createRecordSlice"
 import listRecordSlice from "../features/Welcome/ListMedicalRecord/listRecordSlice"
-import getClinicSlice from "../features/ClinicRoom/indexSlice"
+import getClinicSlice from "../features/ClinicRoom/getClinicSlice"
 import addRecordToWaitingRoomSlice from "../features/Welcome/CreateMedicalRecord/addRecordToWaitingRoomSlice"
-
+import logoutSlice from '../features/Access/Logout/logoutSlice'
+import updateClinicSlice from '../features/ClinicRoom/updateClinicSlice'
+import createResultSlice from '../features/ClinicRoom/createResultSlice'
 
 const store = configureStore({
     reducer:{
@@ -37,7 +39,10 @@ const store = configureStore({
         createRecord: createRecordSlice,
         listRecord:listRecordSlice,
         getClinic: getClinicSlice,
-        addRecordToWaitingRoom: addRecordToWaitingRoomSlice
+        addRecordToWaitingRoom: addRecordToWaitingRoomSlice,
+        logout: logoutSlice,
+        updateClinic: updateClinicSlice,
+        createResult: createResultSlice
     }
 })
 

@@ -39,16 +39,15 @@ header {
       font-weight: 700;
     }
   }
-  button {
-    width: 140px;
-  }
   #login {
+    width: 140px;
     background-color: $color-logo !important;
     &:hover{
         background-color: #6aceef !important;
     }
   }
   #signup {
+    width: 140px;
     background-color: blue !important;
     &:hover{
         background-color: #6c7bfa !important;
@@ -72,6 +71,10 @@ main{
                 text-shadow: 3px 3px 6px #000000;
             }
            }
+        }
+
+        button{
+          margin-top: 16%;
         }
     
         .carousel-control-prev-icon, .carousel-control-next-icon{
@@ -154,4 +157,8 @@ footer{
             margin-bottom: 3px;
         }
     }
+}
+
+.alert{
+  z-index: 100000;
 }

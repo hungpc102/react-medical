@@ -1,0 +1,20 @@
+@import '../../assets/css/base.scss';
+
+.btn-start{
+    background-color: $color-logo;
+    color: white;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.btn-end{
+    background-color: white;
+    color: $color-logo;
+    border-radius: 20px;
+    font-weight: 600;
+
+}
+button{
+    width: 150px;
+    height: 44px;
+}

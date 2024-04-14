@@ -20,7 +20,6 @@ export const validatePassword = (password) => {
   
   // Hàm kiểm tra tên (không chứa số hoặc ký tự đặc biệt, không bắt buộc)
   export const validateName = (name) => {
-    const nameRegex = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/; // Chỉ chứa chữ và khoảng trắng
+    const nameRegex = /^[a-zA-ZÀ-ỹ\s]+$/;
     return nameRegex.test(name);
   };
-  

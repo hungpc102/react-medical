@@ -16,12 +16,12 @@ const ShowDoctor= () => {
     }, [updateDoctor, dispatch]);
 
   return (
-    <div className="container show-doctor pt-5">
-      <div className="row justify-content-center">
+    <div className="container bg-color h-100 show-doctor pt-5">
+      <div className="row  justify-content-center">
         <div className="col-md-8">
           <div className="card shadow-lg">
             <div className="card-header bg-primary text-white">
-              <h3 className="card-title text-center">Hồ Sơ Bác Sĩ</h3>
+              <h4 className="card-title text-center">Hồ Sơ Bác Sĩ</h4>
             </div>
             <ul className="list-group list-group-flush">
               {doctor ? (

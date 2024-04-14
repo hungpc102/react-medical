@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef} from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import {login} from './loginSlice';
 import { Modal } from "bootstrap";
 
 function LoginModal() {
 
   const modalRef = useRef(null);
-
+  
   const [isModalOpen, setIsModalOpen] = useState(true);
   useEffect(() => {
     if (!isModalOpen && modalRef.current) {
@@ -59,7 +59,7 @@ function LoginModal() {
                 </div>
               </div>
               <div className="modal-footer border-0 w-100 justify-content-center pt-0 pb-4">
-                <button type="submit" className="btn btn-primary rounded-pill px-5 py-2">Đăng nhập</button>
+                <button type="submit" className="btn btn-primary rounded-pill  py-2 text-nowrap">Đăng nhập</button>
               </div>
             </form>
           </div>

@@ -15,7 +15,6 @@
         .img-staff{
             width: 60px;
             height: 60px;
-            
         }
         .card-user{
             background-color: $color-select;
@@ -29,6 +28,9 @@
             height: 50px;
             .nav-link{
                 line-height: 50px;
+                &:hover{
+                    background-color:#b5e9fc;
+                }
             }
         }
         .icon{
@@ -36,10 +38,14 @@
             }
         .nav-link.active{
             background-color:$color-select;
+            border-radius: 0;
             border-right: solid 5px #028eb5;
             color: #028eb5 !important;
             font-weight: 600;
         }
     }
    
+}
+.btn-logout{
+    min-height: 68px;
 }

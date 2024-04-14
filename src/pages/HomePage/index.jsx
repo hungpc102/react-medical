@@ -14,14 +14,22 @@ function HomePage () {
   const dispatch = useDispatch();
   const signUp = useSelector((state) => state.signUp);
   const login = useSelector((state) => state.login);
+  const user1 = useSelector((state) => state.login.user?.metadata.user);
+  const tokens = useSelector((state) => state.login.user?.metadata.tokens);
+
   const navigate = useNavigate();
   
   const [showAlert, setShowAlert] = useState(false);
   
   useEffect(() => {
     if (login.status === 'succeeded') {
-      const user = decodeToken(login.user.metadata.tokens.accessToken);
-      navigate(`manage/${user.role}`);
+      if(user1 && tokens){
+        localStorage.setItem('user', JSON.stringify(user1)); 
+        localStorage.setItem('tokens', JSON.stringify(tokens)); 
+
+        const user = decodeToken(login.user.metadata.tokens.accessToken);
+        navigate(`manage/${user.role}`);
+      }
     }
   }, [login, navigate]);
 
@@ -42,14 +50,14 @@ function HomePage () {
   let alert = null;
   if (showAlert && signUp.status === 'succeeded') {
     alert = (
-      <div className="alert alert-success alert-dismissible fade show position-absolute top-0 end-0" role="alert">
+      <div className="alert alert-success alert-dismissible fade show position-absolute top-0 end-0 z-1000" role="alert">
         Đăng ký thành công!
         <button type="button" className="btn-close" onClick={() => setShowAlert(false)} aria-label="Close"></button>
       </div>
     );
   } else if (showAlert && signUp.status === 'failed') {
     alert = (
-      <div className="alert alert-danger alert-dismissible fade show position-absolute top-0 end-0" role="alert">
+      <div className="alert alert-danger alert-dismissible fade show position-absolute top-0 end-0 z-1000" role="alert">
         Đăng ký thất bại! {signUp.error.message} 
         <button type="button" className="btn-close" onClick={() => setShowAlert(false)} aria-label="Close"></button>
       </div>

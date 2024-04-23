@@ -28,8 +28,8 @@ const FormUpdateStaff = () => {
   };
 
   return (
-    <div className="form-update-staff pt-5">
-      <h2>Cập Nhập Hồ Sơ Nhân Viên</h2>
+    <div className="form-update-staff pt-5 bg-color p-5 w-100">
+      <h3 className='w-100 text-center'>Cập Nhập Hồ Sơ Nhân Viên</h3>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="staff_name" className="form-label">Tên Nhân Viên</label>
@@ -76,7 +76,7 @@ const FormUpdateStaff = () => {
           ></textarea>
         </div>
         
-        <button type="submit" className="btn btn-primary fw-bold rounded-pill">Cập Nhật</button>
+        <button type="submit" className="btn btn-update fw-bold rounded-pill mt-5">Cập Nhật</button>
       </form>
     </div>
   );

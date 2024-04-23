@@ -1,0 +1,13 @@
+@import '../../assets//css/base.scss';
+.card{
+    border-radius: 10px;
+    .button-detail{
+        cursor: pointer;
+    }
+    .card-header{
+        background-color: $color-border
+    }
+}
+.radius-10{
+    border-radius: 10px;
+}

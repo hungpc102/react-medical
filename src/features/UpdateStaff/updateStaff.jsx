@@ -4,11 +4,11 @@ import './updateStaff.scss'
 
 const updateStaff = () => {
     return (
-        <div className="row m-0 vh-100">
-            <div className="col-6" style={{'border-right': 'solid 5px #3aa9cf', 'background-color': '#f2f2f2'}}>
+        <div className="row update-staff p-0 m-4 mx-3">
+            <div className="col-6">
                 <ShowStaff/>
             </div>
-            <div className="col-6 d-flex justify-content-center" style={{'background-color': '#f2f2f2'}}>
+            <div className="col-6">
                 <FormUpdateStaff/>
             </div>
         </div>

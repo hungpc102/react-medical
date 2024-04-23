@@ -34,10 +34,10 @@ const CreateRecord = () => {
     e.preventDefault();
     const actionResult = await dispatch(createRecord(recordData));
     const patientId = actionResult?.payload?.metadata?.patient_id;
-    console.log(patientId)
     const score = actionResult?.payload?.metadata?.score;
+    const package_id = actionResult?.payload?.metadata?.package_id;
     if (patientId) {
-      dispatch(addRecordToWaitingRoom({ patientId, score }));
+      dispatch(addRecordToWaitingRoom({ patientId, score, package_id }));
     }
   };
 
@@ -214,6 +214,8 @@ const CreateRecord = () => {
                     <option value="">Chọn gói khám...</option>
                     {/* Các options gói khám được liệt kê ở đây */}
                     <option value={1}>Gói khám tổng quát</option>
+                    <option value={2}>Gói khám nội</option>
+
                     {/* ... */}
                   </select>
                 </div>

@@ -10,7 +10,7 @@ export function useLogout() {
 
   useEffect(() => {
     // When the status changes to 'succeeded', navigate to the login page
-    if(status === 'succeeded') {
+    if(status === 'succeeded' || status === 'failed') {
       localStorage.removeItem('user'); 
       localStorage.removeItem('tokens'); 
       window.location.href = 'http://localhost:3000'

@@ -15,7 +15,7 @@ export const logout = createAsyncThunk(
       const config = {
         headers: {
             'x-api-key': process.env.REACT_APP_API_KEY,
-            'athorization': tokens.accessToken,
+            'x-rtoken-id': tokens.refreshToken,
             'x-client-id': user.userId
           }
       };

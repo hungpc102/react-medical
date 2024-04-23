@@ -17,7 +17,7 @@ const ShowStaff = () => {
     }, [updateStaff, dispatch]);
 
   return (
-    <div className="container show-staff pt-5">
+    <div className="container bg-color h-100 show-staff pt-5">
       <div className="row justify-content-center">
         <div className="col-md-8">
           <div className="card shadow-lg">

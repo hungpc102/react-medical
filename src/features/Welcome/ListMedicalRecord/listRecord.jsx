@@ -73,12 +73,12 @@ const ListRecord = () => {
                     <option value="">All</option>
                     <option value="pending">Đang chờ</option>
                     <option value="examining">Đang khám</option>
-                    <option value="finished">Đã khám xong</option>
+                    <option value="finish">Đã khám xong</option>
                   </select>
                 </div>
             </form>
 
-            <div className="table-responsive">
+            <div className="table-responsive overflow-auto">
               <table className="table table-hover">
                   <thead>
                   <tr>

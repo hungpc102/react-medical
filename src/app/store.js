@@ -25,6 +25,10 @@ import addRecordToWaitingRoomSlice from "../features/Welcome/CreateMedicalRecord
 import logoutSlice from '../features/Access/Logout/logoutSlice'
 import updateClinicSlice from '../features/ClinicRoom/updateClinicSlice'
 import createResultSlice from '../features/ClinicRoom/createResultSlice'
+import getResultSlice from '../features/ExamHistory/detailResultSlice'
+import getAllUserSlice from '../features/manageUser/getAllUserSlice'
+import deleteUserSlice from '../features/manageUser/deleteUserSlice'
+import updateStatusSlice from '../features/manageUser/statusUserSlice'
 
 const store = configureStore({
     reducer:{
@@ -42,7 +46,11 @@ const store = configureStore({
         addRecordToWaitingRoom: addRecordToWaitingRoomSlice,
         logout: logoutSlice,
         updateClinic: updateClinicSlice,
-        createResult: createResultSlice
+        createResult: createResultSlice,
+        getResult: getResultSlice,
+        getAllUser:getAllUserSlice,
+        deleteUser: deleteUserSlice,
+        updateStatus: updateStatusSlice,
     }
 })
 
